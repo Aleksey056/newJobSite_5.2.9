@@ -1,0 +1,63 @@
+.cardVacancy {
+	width: 659px;
+	height: 248px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	border-radius: 12px;
+	padding: 24px;
+	background-color: rgba(255, 255, 255, 1);
+	margin-bottom: 16px;
+	justify-content: space-between;
+}
+
+.head__name {
+	font-weight: 600;
+	font-size: 20px;
+	color: rgba(54, 79, 199, 1)
+}
+
+
+.head__total {
+	display: flex;
+	gap: 16px;
+	align-items: center;
+}
+
+.total__experience {
+	font-weight: 400;
+	font-size: 14px;
+	letter-spacing: 0%;
+	color: rgba(15, 15, 16, 0.5);
+}
+
+
+.info {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+
+.info__employer {
+	font-weight: 400;
+	font-size: 14px;
+	color: rgba(15, 15, 16, 0.5)
+}
+
+.info__city {
+	color: rgba(15, 15, 16, 1);
+	font-weight: 400;
+	font-size: 16px;
+}
+
+.buttonGroup {
+	display: flex;
+	/* gap: 12px; */
+	font-family: Open Syns, sans-serif;
+}
+
+.info__workFormat {
+	display: flex;
+	gap: 6px;
+}

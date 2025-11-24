@@ -1,0 +1,71 @@
+.header {
+	width: 100%;
+	height: 60px;
+	background-color: #FFFFFF;
+	align-items: center;
+	box-shadow: 0px 2px 22.5px 0px #1C1D1F0D;
+	display: flex;
+	justify-content: center;
+}
+
+.header__logo {
+	display: flex;
+	position: fixed;
+	top: 15px;
+	left: 20px;
+	align-items: center;
+	width: 116px;
+	height: 30px;
+	gap: 10px;
+}
+
+.header__icon {
+	width: 30px;
+	height: 30px;
+}
+
+.text {
+	font-weight: 600;
+}
+
+.block2 {
+	display: flex;
+	gap: 24px;
+}
+
+.jobs {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.jobs__text {
+	font-weight: 500;
+	color: black;
+	font-size: 14px;
+	text-decoration: none;
+}
+
+.ellipse {
+	width: 6px;
+	height: 6px;
+}
+
+.userInfo {
+	display: flex;
+	width: 88px;
+	height: 24px;
+	align-items: center;
+	gap: 5px;
+}
+
+.userInfo__image {
+	width: 24px;
+	height: 24px;
+}
+
+.userInfo__text {
+	font-weight: 500;
+	font-size: 14px;
+	color: #0F0F1080
+}

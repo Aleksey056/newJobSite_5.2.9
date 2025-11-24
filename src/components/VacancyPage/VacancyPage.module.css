@@ -1,0 +1,51 @@
+.VacancyPage {
+	margin-top: 24px;
+	display: flex;
+	/* justify-content: center; */
+	flex-direction: column;
+	/* gap: 29px; */
+	padding-bottom: 84px;
+	width: 658px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.boxVacancy {
+	height: 248px;
+	top: 84px;
+	left: 391px;
+	border-radius: 12px;
+	padding: 24px;
+	gap: 16px;
+	background-color: white;
+}
+
+.boxInfo {
+	background-color: white;
+	padding: 24px;
+	border-radius: 12px;
+}
+
+.boxInfoCampanyTitle {
+	font-family: Open Sans;
+	font-weight: 600;
+	font-size: 20px;
+}
+
+.boxInfoCampanyText {
+	font-family: Open Sans;
+	font-weight: 400;
+	font-size: 16px;
+}
+
+.boxInfoProjectTitle {
+	font-family: Open Sans;
+	font-weight: 600;
+	font-size: 16px;
+}
+
+.boxInfoProjectText {
+	font-family: Open Sans;
+	font-weight: 400;
+	font-size: 16px;
+}

@@ -1,0 +1,26 @@
+.moduleSkils {
+	background-color: #FFFFFF;
+	width: 317px;
+	padding: 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	border-radius: 12px;
+	flex-wrap: nowrap;
+}
+
+.title {
+	font-weight: 600;
+	font-size: 14px;
+	height: 20px;
+}
+
+.button {
+	padding: 0;
+	border: none;
+	background-color: white;
+	width: 34px;
+	height: 30px;
+	background-image: url('../../assets/_ActionIcon_.svg');
+	background-repeat: no-repeat;
+}

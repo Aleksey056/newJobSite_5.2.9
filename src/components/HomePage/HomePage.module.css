@@ -1,0 +1,14 @@
+.homePage {
+	margin-top: 24px;
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	gap: 24px;
+	padding-bottom: 84px;
+}
+
+.mainLeftSection {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
