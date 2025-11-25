@@ -18,7 +18,7 @@ const HomePage = ({ city }: CityType) => {
 	const { filters, currentPage } = useTypedSelector(state => state.vacancy);
 	const { searchText, searchCity, searchSkills } = filters
 	const skillsParams = searchSkills.join(',')
-	const [searchParams, setSearchParams] = useSearchParams();
+	const [_, setSearchParams] = useSearchParams();
 
 	useEffect(() => {
 		const params: Record<string, string> = {};
