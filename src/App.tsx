@@ -4,6 +4,7 @@ import Header from './components/Header/Header'
 import { Navigate, Route, Routes } from 'react-router';
 import VacancyPage from './components/VacancyPage/VacancyPage';
 import HomePage from './components/HomePage/HomePage';
+import ErrorPage from './components/ErrorPage/ErrorPage';
 
 function App() {
 	return (
@@ -14,7 +15,7 @@ function App() {
 				<Route path='vacancies/moscow' element={<HomePage city='1' />} />
 				<Route path='vacancies/petersburg' element={<HomePage city='2' />} />
 				<Route path='/vacancies/:id' element={<VacancyPage />} />
-				<Route path='*' element={<Navigate to='/vacancies' replace />} />
+				<Route path='*' element={<ErrorPage />} />
 			</Routes>
 		</>
 	)
