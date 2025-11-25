@@ -14,6 +14,7 @@ function App() {
 				<Route path='/' element={<Navigate to='vacancies/moscow' replace />} />
 				<Route path='vacancies/moscow' element={<HomePage city='1' />} />
 				<Route path='vacancies/petersburg' element={<HomePage city='2' />} />
+				<Route path='vacancies/orenburg' element={<HomePage city='70' />} />
 				<Route path='/vacancies/:id' element={<VacancyPage />} />
 				<Route path='*' element={<ErrorPage />} />
 			</Routes>
