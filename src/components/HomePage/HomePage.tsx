@@ -1,40 +1,68 @@
 import { Box, Divider } from "@mantine/core"
 import Search from "../Search/Search"
 import Skills from "../Skils/Skills"
-import CitySelect from "../CitySelect/CitySelect"
 import VacancyList from "../VacancyList/VacancyList"
 import styles from './HomePage.module.css'
 import { useSearchParams } from 'react-router'
 import { useTypedDispatch, useTypedSelector } from "../../hooks/redux"
 import { useEffect } from "react"
-import { setFilters } from "../../store/vacancySlice"
+import { setFilters, setCurrentPage, vacancyFetch } from "../../store/vacancySlice"
+import SearchTabs from "../searchTabs/SearchTabs"
 
-const HomePage = () => {
+type CityType = {
+	city?: string,
+}
+
+const HomePage = ({ city }: CityType) => {
 	const dispatch = useTypedDispatch();
-	const filters = useTypedSelector(state => state.vacancy.filters);
+	const { filters, currentPage } = useTypedSelector(state => state.vacancy);
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	useEffect(() => {
-		const searchText = searchParams.get('text') || '';
-		const searchCity = searchParams.get('area') || '';
-		if (searchText !== filters.searchText || searchCity !== filters.searchCity) {
-			dispatch(setFilters({ searchText, searchCity }));
-		}
-	}, [searchParams]);
+		const searchTextParams = searchParams.get('text') || '';
+		const pageParams = Number(searchParams.get('page') || 1);
+		if (searchTextParams !== filters.searchText || '') dispatch(setFilters(searchTextParams));
+		if (city !== filters.searchCity || '') dispatch(setFilters(city || ''));
+		if (pageParams !== currentPage || '') dispatch(setCurrentPage(pageParams));
 
-	// не могу понять свой же косяк, при изменение на странице все ок по фильтрам, но если меняю через URL город или текст, то запрос посылается верный, а возвращается так будто поля searchText и searchCity не заданы
-	// Причем я вижу что сначала фильтра применяются, а потом ререндеринг как будто их нет в Redux DevTool - inspection - action - payload - alternate_url
+		dispatch(vacancyFetch({
+			searchText: searchTextParams,
+			searchCity: city,
+			page: currentPage - 1,
+		}))
+	}, [searchParams, city]);
 
-	// console.log('searchCity', filters.searchCity);
-	// console.log('searchText', filters.searchText);
-	// на замедление ЦП видно что происходит поиск без фильтров потом с фильтрами и потом снова бзе фильтров
 
-	useEffect(() => {
-		const params: Record<string, string> = {};
-		if (filters.searchText) params.text = filters.searchText;
-		if (filters.searchCity) params.area = filters.searchCity;
-		setSearchParams(params);
-	}, [filters.searchText, filters.searchCity]);
+	// useEffect(() => {
+	// 	const params: Record<string, string> = {};
+	// 	if (filters.searchText) params.text = filters.searchText;
+	// 	if (filters.searchCity) params.area = filters.searchCity;
+	// 	setSearchParams(params);
+	// }, [filters.searchCity, filters.searchText]);
+
+
+
+	// const updateURL = (updates: { searchText?: string; city?: string | null; page?: number }) => {
+	// 	const params = new URLSearchParams(searchParams)
+	// 	if (updates.searchText !== undefined) {
+	// 		if (updates.searchText) {
+	// 			params.set("search", updates.searchText);
+	// 		} else { params.delete("search"); }
+	// 		params.delete("page");
+	// 	}
+	// 	if (updates.city !== undefined) {
+	// 		if (updates.city) {
+	// 			params.set("city", updates.city);
+	// 		} else { params.delete("city"); }
+	// 		params.delete("page");
+	// 	}
+	// 	if (updates.page !== undefined) {
+	// 		if (updates.page > 1) {
+	// 			params.set("page", String(updates.page))
+	// 		} else { params.delete("page") }
+	// 	}
+	// 	setSearchParams(params);
+	// }
 
 	return (
 		<Box >
@@ -43,12 +71,16 @@ const HomePage = () => {
 			<Box className={styles.homePage}>
 				<Box className={styles.mainLeftSection}>
 					<Skills />
-					<CitySelect />
 				</Box>
-				<VacancyList />
+				<Box>
+					<SearchTabs />
+					<VacancyList />
+				</Box>
 			</Box>
 		</Box>
 	)
 }
 
 export default HomePage
+
+

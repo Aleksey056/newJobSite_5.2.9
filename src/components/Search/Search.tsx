@@ -8,10 +8,8 @@ import { useSearchParams } from 'react-router';
 
 const Search = () => {
 	const dispatch = useTypedDispatch()
-
 	const [searchParams,] = useSearchParams();
 	const searchText = searchParams.get('text') || '';
-
 	const [text, setText] = useState(searchText)
 
 	const setSearchText = (text: string) => {

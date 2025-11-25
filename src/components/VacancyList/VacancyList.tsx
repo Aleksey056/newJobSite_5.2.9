@@ -1,20 +1,19 @@
 import { useTypedDispatch, useTypedSelector } from '../../hooks/redux';
-import { setCurrentPage } from '../../store/vacancySlice';
+import { setCurrentPage, vacancyFetch } from '../../store/vacancySlice';
 import { Box, Loader, Pagination, Text } from '@mantine/core';
 import CardVacancy from '../VacancyCard/VacancyCard';
 import type { Vacancy } from '../../types/vacancy'
 import styles from './VacancyList.module.css'
+import { useSearchParams } from 'react-router';
 
 const VacancyList = () => {
-	const dispatch = useTypedDispatch()
+
 	const { items, status, error, totalPages, currentPage } = useTypedSelector(state => state.vacancy);
+	const [searchParams, setSearchParams] = useSearchParams();
+	const pageParams = Number(searchParams.get('page') || 1);
 
-	// useEffect(() => {
-	// 	dispatch(vacancyFetch({ page: currentPage - 1, searchText: filters.searchText, searchCity: filters.searchCity }))
-	// }, [dispatch, currentPage, filters.searchCity, filters.searchText])
-
-	const onPageChange = (page: number) => {
-		dispatch(setCurrentPage(page));
+	const onPageChange = (page: any) => {
+		setSearchParams({ page: page })
 	};
 
 	return (
@@ -30,7 +29,7 @@ const VacancyList = () => {
 			{status === 'succeeded' && totalPages > 1 && (
 				<Pagination
 					total={totalPages}
-					value={currentPage}
+					value={pageParams}
 					onChange={onPageChange}
 					mt="md"
 					withEdges
