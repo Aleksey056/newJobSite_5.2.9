@@ -10,7 +10,7 @@ const ErrorPage = () => {
 				<Box className={styles.blockTitleAndutton}>
 					<Box className={styles.blockText}>
 						<Text className={styles.title}>
-							Упс! Такой страницы не существует
+							Упс! Такой страницы не существует
 						</Text>
 						<Text className={styles.text}>
 							Давайте перейдём к началу.

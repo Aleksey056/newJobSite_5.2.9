@@ -8,7 +8,6 @@ import VacancyCard from '../VacancyCard/VacancyCard'
 
 const VacancyPage = () => {
 	const { id } = useParams();
-
 	const dispatch = useTypedDispatch()
 	const vacancy = useTypedSelector(state => state.vacancy.vacancyId)
 
@@ -18,7 +17,7 @@ const VacancyPage = () => {
 
 	return (
 		<Box className={styles.VacancyPage}>
-			<VacancyCard {...vacancy} isVacancyList={false}/>
+			<VacancyCard {...vacancy} isVacancyList={false} />
 			<Box className={styles.boxInfo}>
 				<div dangerouslySetInnerHTML={{ __html: vacancy?.description || '' }} />
 			</Box>

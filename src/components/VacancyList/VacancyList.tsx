@@ -9,9 +9,7 @@ const VacancyList = () => {
 	const { items, status, error, totalPages, currentPage } = useTypedSelector(state => state.vacancy);
 	const dispatch = useTypedDispatch()
 
-	const onPageChange = (page: any) => {
-		dispatch(setCurrentPage(page))
-	};
+	const onPageChange = (page: any) => dispatch(setCurrentPage(page))
 
 	return (
 		<Box className={styles.moduleVacancyList}>

@@ -22,7 +22,6 @@ function SearchTabs() {
 				<Tabs.Tab value="moscow">Москва</Tabs.Tab>
 				<Tabs.Tab value="petersburg">Санкт-Петербург</Tabs.Tab>
 				<Tabs.Tab value="orenburg">Оренбург</Tabs.Tab>
-
 			</Tabs.List>
 		</Tabs>
 	);

@@ -8,10 +8,8 @@ import { useTypedDispatch, useTypedSelector } from "../../hooks/redux"
 import { useEffect } from "react"
 import { vacancyFetch } from "../../store/vacancySlice"
 import SearchTabs from "../searchTabs/SearchTabs"
+import type { CityType } from "../../types/vacancy"
 
-type CityType = {
-	city?: string,
-}
 
 const HomePage = ({ city }: CityType) => {
 	const dispatch = useTypedDispatch();

@@ -11,9 +11,7 @@ const Skills = () => {
 	const searchSkills = filters.searchSkills
 	const [inputValue, setInputValue] = useState('');
 
-	const setSearchSkills = (skills: string[]) => {
-		dispatch(setFilters({ searchSkills: skills }))
-	}
+	const setSearchSkills = (skills: string[]) => dispatch(setFilters({ searchSkills: skills }))
 
 	const addSkills = () => {
 		if (inputValue.trim() && !searchSkills.includes(inputValue.trim())) {
@@ -22,14 +20,10 @@ const Skills = () => {
 		}
 	}
 
-	const removeSkills = (skill: string) => {
-		setSearchSkills(searchSkills.filter(s => s !== skill));
-	}
+	const removeSkills = (skill: string) => setSearchSkills(searchSkills.filter(s => s !== skill));
 
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-		if (e.key === 'Enter') {
-			addSkills();
-		}
+		if (e.key === 'Enter') addSkills();
 	};
 
 	return (

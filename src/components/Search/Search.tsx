@@ -11,10 +11,8 @@ const Search = () => {
 	const [searchParams,] = useSearchParams();
 	const searchText = searchParams.get('text') || '';
 	const [text, setText] = useState(searchText)
-
-	const setSearchText = (text: string) => {
-		dispatch(setFilters({ searchText: text }))
-	}
+	
+	const setSearchText = (text: string) => dispatch(setFilters({ searchText: text }))
 
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === 'Enter') setSearchText(text);
@@ -26,7 +24,6 @@ const Search = () => {
 				<Text className={styles.section1__text1}>Список вакансий</Text>
 				<Text className={styles.section1__text2}> по профессии Frontend-разработчик</Text>
 			</Box>
-
 			<Box className={styles.section1__search}>
 				<TextInput
 					radius='md'

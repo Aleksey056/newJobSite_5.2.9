@@ -37,6 +37,6 @@ export type initialStateType = {
 	}
 }
 
-// export type CardVacancyProps = {
-// 	vacancy: Vacancy;
-// }
+export type CityType = {
+	city?: string,
+}
