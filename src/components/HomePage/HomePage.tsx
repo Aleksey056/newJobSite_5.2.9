@@ -6,7 +6,7 @@ import styles from './HomePage.module.css'
 import { useSearchParams } from 'react-router'
 import { useTypedDispatch, useTypedSelector } from "../../hooks/redux"
 import { useEffect } from "react"
-import { setFilters, setCurrentPage, vacancyFetch } from "../../store/vacancySlice"
+import { vacancyFetch } from "../../store/vacancySlice"
 import SearchTabs from "../searchTabs/SearchTabs"
 
 type CityType = {
@@ -16,53 +16,22 @@ type CityType = {
 const HomePage = ({ city }: CityType) => {
 	const dispatch = useTypedDispatch();
 	const { filters, currentPage } = useTypedSelector(state => state.vacancy);
+	const { searchText, searchCity, searchSkills } = filters
+	const skillsParams = searchSkills.join(',')
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	useEffect(() => {
-		const searchTextParams = searchParams.get('text') || '';
-		const pageParams = Number(searchParams.get('page') || 1);
-		if (searchTextParams !== filters.searchText || '') dispatch(setFilters(searchTextParams));
-		if (city !== filters.searchCity || '') dispatch(setFilters(city || ''));
-		if (pageParams !== currentPage || '') dispatch(setCurrentPage(pageParams));
+		const params: Record<string, string> = {};
+		if (searchText) params.text = searchText;
+		if (searchSkills) params.skills = skillsParams;
+		setSearchParams(params);
 
 		dispatch(vacancyFetch({
-			searchText: searchTextParams,
+			searchText: searchText,
 			searchCity: city,
 			page: currentPage - 1,
 		}))
-	}, [searchParams, city]);
-
-
-	// useEffect(() => {
-	// 	const params: Record<string, string> = {};
-	// 	if (filters.searchText) params.text = filters.searchText;
-	// 	if (filters.searchCity) params.area = filters.searchCity;
-	// 	setSearchParams(params);
-	// }, [filters.searchCity, filters.searchText]);
-
-
-
-	// const updateURL = (updates: { searchText?: string; city?: string | null; page?: number }) => {
-	// 	const params = new URLSearchParams(searchParams)
-	// 	if (updates.searchText !== undefined) {
-	// 		if (updates.searchText) {
-	// 			params.set("search", updates.searchText);
-	// 		} else { params.delete("search"); }
-	// 		params.delete("page");
-	// 	}
-	// 	if (updates.city !== undefined) {
-	// 		if (updates.city) {
-	// 			params.set("city", updates.city);
-	// 		} else { params.delete("city"); }
-	// 		params.delete("page");
-	// 	}
-	// 	if (updates.page !== undefined) {
-	// 		if (updates.page > 1) {
-	// 			params.set("page", String(updates.page))
-	// 		} else { params.delete("page") }
-	// 	}
-	// 	setSearchParams(params);
-	// }
+	}, [searchCity, searchText, city, currentPage, searchSkills]);
 
 	return (
 		<Box >

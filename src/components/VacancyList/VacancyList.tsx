@@ -1,19 +1,16 @@
 import { useTypedDispatch, useTypedSelector } from '../../hooks/redux';
-import { setCurrentPage, vacancyFetch } from '../../store/vacancySlice';
+import { setCurrentPage } from '../../store/vacancySlice';
 import { Box, Loader, Pagination, Text } from '@mantine/core';
 import CardVacancy from '../VacancyCard/VacancyCard';
 import type { Vacancy } from '../../types/vacancy'
 import styles from './VacancyList.module.css'
-import { useSearchParams } from 'react-router';
 
 const VacancyList = () => {
-
 	const { items, status, error, totalPages, currentPage } = useTypedSelector(state => state.vacancy);
-	const [searchParams, setSearchParams] = useSearchParams();
-	const pageParams = Number(searchParams.get('page') || 1);
+	const dispatch = useTypedDispatch()
 
 	const onPageChange = (page: any) => {
-		setSearchParams({ page: page })
+		dispatch(setCurrentPage(page))
 	};
 
 	return (
@@ -29,7 +26,7 @@ const VacancyList = () => {
 			{status === 'succeeded' && totalPages > 1 && (
 				<Pagination
 					total={totalPages}
-					value={pageParams}
+					value={currentPage}
 					onChange={onPageChange}
 					mt="md"
 					withEdges

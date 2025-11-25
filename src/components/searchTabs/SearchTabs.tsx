@@ -15,7 +15,7 @@ function SearchTabs() {
 	}
 
 	return (
-		<Tabs value={activeValue()} onChange={setTabs}>
+		<Tabs value={(activeValue())} onChange={setTabs}>
 			<Tabs.List>
 				<Tabs.Tab value="moscow">Москва</Tabs.Tab>
 				<Tabs.Tab value="petersburg">Санкт-Петербург</Tabs.Tab>

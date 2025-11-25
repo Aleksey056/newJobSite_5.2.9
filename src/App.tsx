@@ -4,7 +4,6 @@ import Header from './components/Header/Header'
 import { Navigate, Route, Routes } from 'react-router';
 import VacancyPage from './components/VacancyPage/VacancyPage';
 import HomePage from './components/HomePage/HomePage';
-// import VacancyList from './components/VacancyList/VacancyList';
 
 function App() {
 	return (
